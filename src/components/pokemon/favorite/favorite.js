@@ -6,7 +6,7 @@ const Favorite = ({ isStarClicked, handleStarClick }) => {
   return (
     <div className={`icon ${isStarClicked ? "yellow" : ""}`} onClick={handleStarClick}>
       <FontAwesomeIcon className="star" icon={faStar} size="lg" />
-      {isStarClicked && <span className="favorite">favorite</span>}
+      {isStarClicked && <span className="favorite">Favorite</span>}
     </div>
   );
 };

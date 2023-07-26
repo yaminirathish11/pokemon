@@ -1,7 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams, useNavigate } from "react-router-dom";
-import './item.css';
-
+import "./item.css";
 
 const Item = () => {
   const { pokemon, pokemonStats, berries, name, moves } = useLoaderData();
@@ -54,14 +53,16 @@ const Item = () => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
-  
-  
 
   return (
     <div>
       <div className="contentAlign">
         <div>
-          <img className="independentPokemon" src={getPokemonImageUrl(pokemonId)} alt={name} />
+          <img
+            className="independentPokemon"
+            src={getPokemonImageUrl(pokemonId)}
+            alt={name}
+          />
           <h2>Hello, I'm {toTitleCase(name)}</h2>
         </div>
         <p>
@@ -69,10 +70,12 @@ const Item = () => {
           {pokemon.description}
           {renderPokemonStats()}
           {renderBerries()}
-          <span style={{ fontWeight: "bold" }}>Moves:</span>{toTitleCase(moves[0])}
+          <span style={{ fontWeight: "bold" }}>Moves:</span>
+          {toTitleCase(moves[0])}
         </p>
         <div>
-          <button onClick={handlePrevButtonClick}>Prev</button> {/* Add onClick event handler */}
+          <button onClick={handlePrevButtonClick}>Prev</button>{" "}
+          {/* Add onClick event handler */}
           <button onClick={handleNextButtonClick}>Next</button>
         </div>
       </div>
