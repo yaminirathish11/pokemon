@@ -1,0 +1,26 @@
+h1 {
+  /* background-image: url("../pokemon-header.jpeg"); */
+  margin-top: 0;
+  padding: 35px;
+  text-align: center;
+  border-bottom: solid black;
+  background-size: 3%;
+}
+.landPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.pokemonbutton {
+  display: flex;
+  margin: 85px;
+  margin-bottom: 0;
+  height: 200px;
+  width: 200px;
+  flex-direction: column;
+}
+.buttonimg {
+  height: 170px;
+  width: 190px;
+}

@@ -1,0 +1,10 @@
+.contentAlign{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.independentPokemon{
+    width:300px;
+    height:300px;
+}
