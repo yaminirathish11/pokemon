@@ -7,14 +7,24 @@ h1 {
   background-size: 3%;
 }
 .landPage {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates three columns with equal width */
+  gap: 30px; /* Adds 20px gap between each Pokemon card */
+  justify-items: center; /* Centers the Pokemon cards horizontally within the columns */
+  margin: 40px; /* Adds some margin around the entire grid */
+  /* display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+  max-width: 600px;
+  width: calc(33.33% - 20px); */
 }
 .pokemonbutton {
   display: flex;
-  margin: 85px;
+  /* margin: 85px; */
+  align-items: center;
   margin-bottom: 0;
   height: 200px;
   width: 200px;
@@ -23,4 +33,32 @@ h1 {
 .buttonimg {
   height: 170px;
   width: 190px;
+}
+
+/* .star.yellow {
+  color: yellow;
+}
+.icon{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+} */
+
+.star path {
+  fill: black;
+}
+
+.icon.yellow .star path {
+  fill: yellow;
+}
+.favorite {
+  color: black;
+  margin-left: 5px; /* Adds some space between the star and "favorite" text */
+  font-weight: bold;
+}
+.search{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
