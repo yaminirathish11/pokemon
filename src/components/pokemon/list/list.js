@@ -99,9 +99,9 @@ const PokemonList = () => {
         {subset.map((pokeman, id) => renderPokeman(pokeman, id))}
       </div>
       <div>
-        {subset.map((item) => (
+        {/* {subset.map((item) => (
           <div key={item.id}>{item.title}</div>
-        ))}
+        ))} */}
         <Pagination
           pageCount={totalPages}
           onPageChange={handlePageChange}
