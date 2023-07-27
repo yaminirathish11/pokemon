@@ -45,6 +45,9 @@ const Item = () => {
     const nextPokemonId = parseInt(pokemonId) + 1; // Calculate the ID of the next Pokémon
     navigate(`/${nextPokemonId}`); // Navigate to the next Pokémon
   };
+  const handleHomeButtonClick = () => {
+    navigate("/");
+  };
   const toTitleCase = (str) => {
     return str
       .replace(/[_ -]/g, " ") // Replace all underscores with spaces
@@ -76,7 +79,8 @@ const Item = () => {
         <div>
           <button onClick={handlePrevButtonClick}>Prev</button>{" "}
           {/* Add onClick event handler */}
-          <button onClick={handleNextButtonClick}>Next</button>
+          <button onClick={handleNextButtonClick}>Next</button>{" "}
+          <button onClick={handleHomeButtonClick}>Home</button>
         </div>
       </div>
     </div>

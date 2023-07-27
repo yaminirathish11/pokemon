@@ -5,10 +5,17 @@ import Favorite from "/Users/yamini/pokemon/src/components/pokemon/favorite/favo
 import Search from "/Users/yamini/pokemon/src/components/pokemon/search/search.js";
 import Pagination from "/Users/yamini/pokemon/src/components/pokemon/pagination/pagination.js";
 
+const getInitialClickedPokemonIds = () => {
+  const savedClickedPokemonIds = localStorage.getItem("clickedPokemonIds");
+  return savedClickedPokemonIds ? JSON.parse(savedClickedPokemonIds) : [];
+};
+
 const PokemonList = () => {
   const navigate = useNavigate();
   const { pokemonList } = useLoaderData();
-  const [clickedPokemonIds, setClickedPokemonIds] = useState([]);
+  const [clickedPokemonIds, setClickedPokemonIds] = useState(
+    getInitialClickedPokemonIds()
+  );
   const [filteredPokemonList, setFilteredPokemonList] = useState(pokemonList);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -21,6 +28,14 @@ const PokemonList = () => {
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };
+
+  useEffect(() => {
+    console.log("Storing clickedPokemonIds in local storage");
+    localStorage.setItem(
+      "clickedPokemonIds",
+      JSON.stringify(clickedPokemonIds)
+    );
+  }, [clickedPokemonIds]);
 
   useEffect(() => {
     setData(filteredPokemonList);
@@ -47,6 +62,12 @@ const PokemonList = () => {
       ]);
     }
   };
+
+  useEffect(() => {
+    console.log("Loading clickedPokemonIds from local storage");
+    setClickedPokemonIds(getInitialClickedPokemonIds());
+  }, []);
+
   const toTitleCase = (str) => {
     return str
       .toLowerCase()
@@ -94,14 +115,14 @@ const PokemonList = () => {
       </div>
       <div className="landPage">
         {/* {filteredPokemonList.map((pokeman, id) => renderPokeman(pokeman, id))}
-      </div>
-      <div> */}
+        </div>
+        <div> */}
         {subset.map((pokeman, id) => renderPokeman(pokeman, id))}
       </div>
       <div>
         {/* {subset.map((item) => (
-          <div key={item.id}>{item.title}</div>
-        ))} */}
+            <div key={item.id}>{item.title}</div>
+          ))} */}
         <Pagination
           pageCount={totalPages}
           onPageChange={handlePageChange}
