@@ -10,7 +10,7 @@ export async function loader({ params }) {
       response = await axios.get(
         `https://pokeapi.co/api/v2/characteristic/${params.pokemonId}`
       );
-    }
+    }  // 404 error no data available after 31
     // const response = await axios.get(
     //   `https://pokeapi.co/api/v2/characteristic/${params.pokemonId}`
     // );
@@ -19,10 +19,17 @@ export async function loader({ params }) {
       statsResponse = await axios.get(
         `https://pokeapi.co/api/v2/nature/${params.pokemonId}`
       );
-    }
-    const berryResponse = await axios.get(
-      `https://pokeapi.co/api/v2/berry/${params.pokemonId}`
-    );
+    } // 404 error no data available after 26
+
+    let berryResponse = null;
+    if (params.pokemonId < 65) {
+      berryResponse = await axios.get(
+        `https://pokeapi.co/api/v2/berry/${params.pokemonId}`
+      );
+    }// 404 error no data available after 65
+    // const berryResponse = await axios.get(
+    //   `https://pokeapi.co/api/v2/berry/${params.pokemonId}`
+    // );
     const des = response?.data.descriptions.find(
       (description) => description.language.name === "en"
     );
@@ -34,7 +41,7 @@ export async function loader({ params }) {
     return {
       pokemon: des ? des.description : "No data",
       pokemonStats: statsResponse ? statsResponse.data : "No data",
-      berries: berryResponse.data,
+      berries: berryResponse ? berryResponse.data :"No data" ,
       name: pokemonObject.data.name,
       moves,
     };
