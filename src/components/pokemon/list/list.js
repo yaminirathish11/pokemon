@@ -4,6 +4,7 @@ import { useNavigate, useLoaderData } from "react-router-dom";
 import Favorite from "/Users/yamini/pokemon/src/components/pokemon/favorite/favorite.js";
 import Search from "/Users/yamini/pokemon/src/components/pokemon/search/search.js";
 import Pagination from "/Users/yamini/pokemon/src/components/pokemon/pagination/pagination.js";
+import Sort from "/Users/yamini/pokemon/src/components/pokemon/sort/sort.js";
 
 const getInitialClickedPokemonIds = () => {
   const savedClickedPokemonIds = localStorage.getItem("clickedPokemonIds");
@@ -27,6 +28,41 @@ const PokemonList = () => {
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
+  };
+
+  const handleSort = (sortingOption) => {
+    switch (sortingOption) {
+      case "Reset":
+        setFilteredPokemonList(pokemonList);
+        setClickedPokemonIds(clickedPokemonIds);
+        setCurrentPage(0);
+        break;
+      case "From A -> B":
+        setFilteredPokemonList(
+          [...filteredPokemonList].sort((a, b) => a.name.localeCompare(b.name))
+        );
+        break;
+      case "From B -> A":
+        setFilteredPokemonList(
+          [...filteredPokemonList].sort((a, b) => b.name.localeCompare(a.name))
+        );
+        break;
+      case "Favorite":
+        // Filter the original pokemonList based on clickedPokemonIds
+        const favoritePokemonList = pokemonList.filter((pokemon, index) =>
+          clickedPokemonIds.includes(index)
+        );
+        // Sort the filtered list by name
+        setFilteredPokemonList(
+          [...favoritePokemonList].sort((a, b) => a.name.localeCompare(b.name))
+        );
+        console.log(pokemonList);
+        console.log(clickedPokemonIds);
+        console.log(favoritePokemonList);
+        break;
+      default:
+        break;
+    }
   };
 
   useEffect(() => {
@@ -110,8 +146,11 @@ const PokemonList = () => {
       <h1 style={{ backgroundImage: `url("/pokemon-header.jpeg")` }}>
         Welcome to Minni's pokemon world
       </h1>
-      <div className="search">
-        <Search onSearch={handleSearch} />
+      <div className="nav">
+        <Sort onSort={handleSort} />
+        <div className="search">
+          <Search onSearch={handleSearch} />
+        </div>
       </div>
       <div className="landPage">
         {/* {filteredPokemonList.map((pokeman, id) => renderPokeman(pokeman, id))}

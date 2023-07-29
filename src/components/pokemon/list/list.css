@@ -56,9 +56,19 @@ h1 {
   margin-left: 5px; /* Adds some space between the star and "favorite" text */
   font-weight: bold;
 }
-.search{
-  display: flex;
+.nav{
+  display: flex; 
+  justify-content: space-between;
+}
+.search {
   align-items: flex-end;
   justify-content: flex-end;
   margin-right: 20px;
+}
+.dropdown{
+  margin-left: 20px;
+} 
+
+.dropbutton{
+  width: 150px;
 }
